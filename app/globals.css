@@ -2,100 +2,1147 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Fonts loaded via next/font/google in layout.tsx (Plus Jakarta Sans + Space Grotesk) */
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: var(--font-sans);
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: var(--font-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ─── Design Tokens — Dark Glassmorphism ───────────────────── */
 :root {
-    --background: oklch(0.98 0.01 95);
-    --foreground: oklch(0.15 0.05 30);
-    --card: oklch(0.99 0.005 95);
-    --card-foreground: oklch(0.15 0.05 30);
-    --popover: oklch(0.99 0.005 95);
-    --popover-foreground: oklch(0.15 0.05 30);
-    --primary: oklch(0.25 0.05 30);
-    --primary-foreground: oklch(0.99 0.005 95);
-    --secondary: oklch(0.95 0.02 95);
-    --secondary-foreground: oklch(0.25 0.05 30);
-    --muted: oklch(0.95 0.02 95);
-    --muted-foreground: oklch(0.45 0.05 30);
-    --accent: oklch(0.95 0.02 95);
-    --accent-foreground: oklch(0.25 0.05 30);
-    --destructive: oklch(0.55 0.15 25);
-    --border: oklch(0.9 0.01 95);
-    --input: oklch(0.9 0.01 95);
-    --ring: oklch(0.5 0.05 30);
-    --radius: 1.5rem;
+  /* Core palette — deep purple/indigo dark mode */
+  --bg-base: #0a0a14;
+  --bg-gradient-1: #0d0b1e;
+  --bg-gradient-2: #0f1729;
+  --bg-gradient-3: #130d23;
+
+  /* Brand accent: violet → indigo → cyan */
+  --accent-violet: #7c3aed;
+  --accent-indigo: #4f46e5;
+  --accent-cyan: #06b6d4;
+  --accent-pink: #ec4899;
+  --glow-violet: rgba(124, 58, 237, 0.35);
+  --glow-cyan: rgba(6, 182, 212, 0.25);
+
+  /* Glass surfaces */
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-bg-hover: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(255, 255, 255, 0.2);
+
+  /* Shadcn token overrides */
+  --background: #0a0a14;
+  --foreground: rgba(255, 255, 255, 0.93);
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: rgba(255, 255, 255, 0.93);
+  --popover: #141420;
+  --popover-foreground: rgba(255, 255, 255, 0.93);
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(255, 255, 255, 0.07);
+  --secondary-foreground: rgba(255, 255, 255, 0.8);
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: rgba(255, 255, 255, 0.45);
+  --accent: rgba(124, 58, 237, 0.15);
+  --accent-foreground: #a78bfa;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgba(124, 58, 237, 0.5);
+  --radius: 1.25rem;
+
+  /* Sidebar */
+  --sidebar: rgba(255, 255, 255, 0.03);
+  --sidebar-foreground: rgba(255, 255, 255, 0.85);
+  --sidebar-primary: #7c3aed;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(124, 58, 237, 0.12);
+  --sidebar-accent-foreground: #a78bfa;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: rgba(124, 58, 237, 0.4);
+
+  /* Chart colors */
+  --chart-1: #7c3aed;
+  --chart-2: #06b6d4;
+  --chart-3: #ec4899;
+  --chart-4: #10b981;
+  --chart-5: #f59e0b;
 }
 
-.dark {
-    --background: oklch(0.12 0.02 30);
-    --foreground: oklch(0.98 0.01 95);
-    --card: oklch(0.15 0.02 30);
-    --card-foreground: oklch(0.98 0.01 95);
-    --popover: oklch(0.15 0.02 30);
-    --popover-foreground: oklch(0.98 0.01 95);
-    --primary: oklch(0.95 0.02 95);
-    --primary-foreground: oklch(0.15 0.02 30);
-    --secondary: oklch(0.2 0.02 30);
-    --secondary-foreground: oklch(0.98 0.01 95);
-    --muted: oklch(0.2 0.02 30);
-    --muted-foreground: oklch(0.6 0.02 30);
-    --accent: oklch(0.2 0.02 30);
-    --accent-foreground: oklch(0.98 0.01 95);
-    --destructive: oklch(0.45 0.15 25);
-    --border: oklch(0.25 0.02 30);
-    --input: oklch(0.25 0.02 30);
-    --ring: oklch(0.8 0.02 30);
+/* ─── Keyframe Animations ──────────────────────────────────── */
+@keyframes gradient-drift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
+@keyframes orb-float {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(30px, -20px) scale(1.05); }
+  66%       { transform: translate(-20px, 15px) scale(0.97); }
+}
+
+@keyframes orb-float-reverse {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(-25px, 20px) scale(1.03); }
+  66%       { transform: translate(20px, -15px) scale(0.98); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--glow-violet), 0 0 40px rgba(124,58,237,0.1); }
+  50%       { box-shadow: 0 0 35px var(--glow-violet), 0 0 70px rgba(124,58,237,0.15); }
+}
+
+@keyframes sparkle-rotate {
+  from { transform: rotate(0deg) scale(1); }
+  to   { transform: rotate(360deg) scale(1.1); }
+}
+
+@keyframes score-draw {
+  from { stroke-dashoffset: 553; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes bounce-dots {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+  40%            { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ─── Base Reset ───────────────────────────────────────────── */
 @layer base {
-  * {
+  *, *::before, *::after {
     @apply border-border outline-ring/50;
-    }
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
-    @apply bg-background text-foreground antialiased;
+    background-color: var(--bg-base);
+    color: var(--foreground);
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    }
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* ── Animated mesh gradient background ── */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 15%, rgba(124,58,237,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 90% 85%, rgba(6,182,212,0.16) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 70% at 50% 50%, rgba(79,70,229,0.1) 0%, transparent 60%),
+      linear-gradient(135deg, #0a0a14 0%, #0d0b1e 40%, #0f1729 70%, #0a0a14 100%);
+    background-size: 300% 300%, 300% 300%, 100% 100%, 100% 100%;
+    animation: gradient-drift 18s ease-in-out infinite;
+  }
+
+  /* ── Floating orbs ── */
+  body::after {
+    content: "";
+    position: fixed;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.13) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    z-index: -1;
+    animation: orb-float 14s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Grotesk", sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: rgba(124, 58, 237, 0.35);
+    color: #fff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(124, 58, 237, 0.3);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(124, 58, 237, 0.55); }
+}
+
+/* ─── Global Utility Classes ───────────────────────────────── */
+
+/* Glassmorphism card */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid var(--glass-border);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #818cf8 40%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle glow on focus/active */
+.glow-ring:focus-visible,
+.glow-ring:focus {
+  outline: 2px solid rgba(124, 58, 237, 0.6);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+}
+
+/* ─── Animated Entrance Effects ────────────────────────────── */
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-fade-in {
+  animation: fade-in 0.5s ease both;
+}
+.animate-slide-in-left {
+  animation: slide-in-left 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-card-enter {
+  animation: card-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stagger helpers */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+
+/* ─── Layout Wrappers ────────────────────────────────────────── */
+
+/* Main page wrapper — already flex h-screen, just add animation */
+div.flex.h-screen.bg-background {
+  animation: fade-in 0.4s ease;
+}
+
+/* ─── Sidebar ───────────────────────────────────────────────── */
+aside {
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+  animation: slide-in-left 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+aside > div:first-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+  padding: 1.25rem 1rem;
+}
+
+/* Logo dots */
+aside .grid.grid-cols-2 > div {
+  border-radius: 3px;
+  transition: background 0.3s;
+}
+
+/* History section header */
+aside h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* History items */
+aside .space-y-2 > div {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 0.875rem !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.625rem 0.875rem;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+aside .space-y-2 > div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(124,58,237,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+aside .space-y-2 > div:hover {
+  background: rgba(124, 58, 237, 0.1) !important;
+  border-color: rgba(124, 58, 237, 0.3) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  transform: translateX(3px);
+}
+aside .space-y-2 > div:hover::before { opacity: 1; }
+
+/* Account row */
+aside .border-t {
+  border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+aside .border-transparent {
+  border: 1px solid transparent !important;
+  border-radius: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  transition: background 0.25s, border-color 0.25s;
+}
+aside .border-transparent:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* ─── Hero Section (Home page) ──────────────────────────────── */
+main > div.text-center {
+  animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* H1 hero title */
+main > div.text-center h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* "AI" italic accent */
+main > div.text-center h1 span {
+  background: linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+
+/* Tagline */
+main > div.text-center p {
+  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-top: 0.5rem;
+}
+
+/* ─── Main Card (home form) ─────────────────────────────────── */
+/* The Card component */
+.rounded-\[40px\] {
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 2rem !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 32px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  animation: fade-in-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.rounded-\[40px\]:hover {
+  box-shadow:
+    0 0 0 1px rgba(124, 58, 237, 0.2),
+    0 40px 100px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(124, 58, 237, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-color: rgba(124, 58, 237, 0.25) !important;
+}
+
+/* Sparkle badge on card */
+.absolute.-top-4.-right-4 {
+  background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(79,70,229,0.2)) !important;
+  border: 2px solid rgba(124, 58, 237, 0.5) !important;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px var(--glow-violet);
+  animation: sparkle-rotate 8s linear infinite, pulse-glow 3s ease-in-out infinite;
+}
+
+/* ─── Tab Switcher (Upload / Paste) ─────────────────────────── */
+div.flex.gap-1.bg-muted\/50.p-1.rounded-2xl {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 1rem !important;
+  padding: 4px !important;
+}
+
+/* Tab buttons */
+div.flex.gap-1.bg-muted\/50 button {
+  border-radius: 0.75rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+div.flex.gap-1.bg-muted\/50 button[class*="bg-background"] {
+  background: rgba(124, 58, 237, 0.2) !important;
+  color: #a78bfa !important;
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.25);
+  border: 1px solid rgba(124, 58, 237, 0.3) !important;
+}
+div.flex.gap-1.bg-muted\/50 button:not([class*="bg-background"]):hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ─── Upload Drop Zone ──────────────────────────────────────── */
+.flex-1.aspect-square.rounded-3xl.border-2.border-dashed {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 1.5rem !important;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.flex-1.aspect-square.rounded-3xl.border-2.border-dashed::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(124,58,237,0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.flex-1.aspect-square.rounded-3xl.border-2.border-dashed:hover {
+  background: rgba(124, 58, 237, 0.06) !important;
+  border-color: rgba(124, 58, 237, 0.4) !important;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.12), inset 0 0 20px rgba(124, 58, 237, 0.04);
+}
+.flex-1.aspect-square.rounded-3xl.border-2.border-dashed:hover::before { opacity: 1; }
+
+/* Upload icon box */
+.w-16.h-16.rounded-2xl.bg-background {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease !important;
+}
+.group:hover .w-16.h-16.rounded-2xl.bg-background {
+  transform: scale(1.12) rotate(-3deg) !important;
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.25);
+}
+
+/* Upload icon */
+.w-8.h-8.text-primary\/60 { color: #7c3aed !important; opacity: 0.7; }
+
+/* Drop zone text */
+.flex-1.aspect-square p.text-center.font-medium {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6;
+}
+.flex-1.aspect-square .text-xs.text-muted-foreground {
+  color: rgba(255, 255, 255, 0.3) !important;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem !important;
+}
+
+/* Clear file button */
+.absolute.top-3.right-3.w-7.h-7 {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.2s ease;
+}
+.absolute.top-3.right-3.w-7.h-7:hover {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* ─── Textarea (Paste notes) ────────────────────────────────── */
+textarea {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 1.25rem !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-size: 0.875rem !important;
+  line-height: 1.7 !important;
+  resize: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
+}
+textarea::placeholder { color: rgba(255, 255, 255, 0.22) !important; }
+textarea:focus {
+  border-color: rgba(124, 58, 237, 0.5) !important;
+  background: rgba(124, 58, 237, 0.04) !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12), 0 0 25px rgba(124, 58, 237, 0.08) !important;
+  outline: none !important;
+}
+
+/* ─── Mode Buttons (Quiz / Flash card) ──────────────────────── */
+.grid.grid-cols-2.gap-3 > button {
+  height: 3.5rem !important;
+  border-radius: 1rem !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.grid.grid-cols-2.gap-3 > button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Active mode button */
+.grid.grid-cols-2.gap-3 > button[data-state="active"],
+.grid.grid-cols-2.gap-3 > button.bg-primary,
+.grid.grid-cols-2.gap-3 > button:not(.border) {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%) !important;
+  border-color: rgba(124, 58, 237, 0.5) !important;
+  box-shadow: 0 4px 24px rgba(124, 58, 237, 0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+  color: white !important;
+}
+.grid.grid-cols-2.gap-3 > button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(124, 58, 237, 0.35);
+}
+.grid.grid-cols-2.gap-3 > button:active { transform: translateY(0); }
+
+/* Outline variant (inactive mode) */
+.grid.grid-cols-2.gap-3 > button[class*="outline"] {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+.grid.grid-cols-2.gap-3 > button[class*="outline"]:hover {
+  background: rgba(124, 58, 237, 0.08) !important;
+  border-color: rgba(124, 58, 237, 0.3) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Info text */
+p.text-xs.text-muted-foreground.font-medium.leading-relaxed {
+  color: rgba(255, 255, 255, 0.38) !important;
+  font-size: 0.78rem !important;
+}
+p.text-xs.text-muted-foreground span.font-bold {
+  color: #a78bfa !important;
+}
+
+/* Error text */
+p.text-xs.text-destructive {
+  color: #f87171 !important;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.625rem;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ─── Generate / Submit Button ──────────────────────────────── */
+button[type="submit"],
+form button[type="submit"] {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #06b6d4 100%) !important;
+  background-size: 200% auto !important;
+  border: none !important;
+  border-radius: 1.125rem !important;
+  color: white !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  height: 3.75rem !important;
+  letter-spacing: -0.01em;
+  box-shadow:
+    0 4px 24px rgba(124, 58, 237, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.15) inset;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: pulse-glow 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+button[type="submit"]::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transition: left 0.5s ease;
+}
+button[type="submit"]:hover {
+  background-position: right center !important;
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.55), 0 0 60px rgba(124,58,237,0.2) !important;
+}
+button[type="submit"]:hover::before { left: 100%; }
+button[type="submit"]:active { transform: translateY(0) scale(0.99) !important; }
+button[type="submit"]:disabled {
+  opacity: 0.5 !important;
+  animation: none !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Arrow icon in generate button */
+button[type="submit"] .ml-3 {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+button[type="submit"]:hover .ml-3 { transform: translateX(5px) !important; }
+
+/* ─── Shadcn Card (generic) ─────────────────────────────────── */
+[class*="rounded-3xl"],
+[class*="rounded-2xl"] {
+  position: relative;
+}
+
+/* Quiz/Flashcard page cards */
+.p-12.text-center.rounded-3xl,
+.min-h-\[200px\].flex.items-center {
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 1.75rem !important;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+  animation: card-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Quiz Page ─────────────────────────────────────────────── */
+.min-h-screen.bg-background.flex.flex-col {
+  background: transparent !important;
+  animation: fade-in 0.4s ease;
+}
+
+/* Quiz header */
+header.p-6 {
+  padding: 1.5rem 2rem !important;
+  animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Progress label */
+span.text-sm.font-bold.text-muted-foreground {
+  color: rgba(255, 255, 255, 0.4) !important;
+  text-transform: uppercase;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.1em;
+}
+span.text-sm.font-bold:not([class*="muted"]) {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Progress bar */
+[role="progressbar"],
+.h-2.rounded-full {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 999px;
+  overflow: hidden;
+  height: 6px !important;
+}
+[role="progressbar"] > div,
+.h-2.rounded-full > div {
+  background: linear-gradient(90deg, #7c3aed, #4f46e5, #06b6d4) !important;
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+}
+
+/* "switch flash" / "switch quiz" header button */
+header a > button,
+header > a > button {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.875rem !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-weight: 700;
+  transition: all 0.25s ease !important;
+}
+header a > button:hover {
+  background: rgba(124, 58, 237, 0.12) !important;
+  border-color: rgba(124, 58, 237, 0.35) !important;
+  color: #a78bfa !important;
+  transform: translateY(-1px);
+}
+
+/* Question text */
+.p-12.text-center.rounded-3xl h2,
+main h2 {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem) !important;
+}
+
+/* ─── Quiz Option Buttons ───────────────────────────────────── */
+.grid.grid-cols-1.gap-4 > button,
+.grid.grid-cols-1.md\:grid-cols-2.gap-4 > button {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 1rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  height: 5rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+  padding: 0 1.5rem !important;
+  justify-content: flex-start !important;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: card-enter 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+  overflow: hidden;
+}
+.grid.grid-cols-1.gap-4 > button::before,
+.grid.grid-cols-1.md\:grid-cols-2.gap-4 > button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(124,58,237,0.06), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.grid.grid-cols-1.gap-4 > button:nth-child(1),
+.grid.grid-cols-1.md\:grid-cols-2.gap-4 > button:nth-child(1) { animation-delay: 0.05s; }
+.grid.grid-cols-1.gap-4 > button:nth-child(2),
+.grid.grid-cols-1.md\:grid-cols-2.gap-4 > button:nth-child(2) { animation-delay: 0.1s; }
+.grid.grid-cols-1.gap-4 > button:nth-child(3),
+.grid.grid-cols-1.md\:grid-cols-2.gap-4 > button:nth-child(3) { animation-delay: 0.15s; }
+.grid.grid-cols-1.gap-4 > button:nth-child(4),
+.grid.grid-cols-1.md\:grid-cols-2.gap-4 > button:nth-child(4) { animation-delay: 0.2s; }
+
+/* Option hover (unanswered) */
+.grid.grid-cols-1.gap-4 > button:hover:not(:disabled),
+.grid.grid-cols-1.md\:grid-cols-2.gap-4 > button:hover:not(:disabled) {
+  background: rgba(124, 58, 237, 0.1) !important;
+  border-color: rgba(124, 58, 237, 0.35) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 24px rgba(124, 58, 237, 0.2);
+}
+.grid.grid-cols-1.gap-4 > button:hover:not(:disabled)::before,
+.grid.grid-cols-1.md\:grid-cols-2.gap-4 > button:hover:not(:disabled)::before { opacity: 1; }
+
+/* Option labels (A. B. C. D.) */
+.grid.grid-cols-1 .mr-4.font-bold,
+.grid.grid-cols-1.md\:grid-cols-2 .mr-4.font-bold {
+  color: rgba(124, 58, 237, 0.7) !important;
+  font-size: 0.85rem;
+}
+
+/* Correct answer highlight */
+button.bg-green-50 {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  color: #6ee7b7 !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+/* Wrong answer highlight */
+button.bg-red-50 {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  color: #fca5a5 !important;
+}
+
+/* Dimmed options */
+button.opacity-60 { opacity: 0.4 !important; }
+
+/* Explanation section */
+button.text-primary.underline {
+  color: #a78bfa !important;
+  font-size: 0.8rem !important;
+  font-weight: 700;
+  transition: color 0.2s !important;
+}
+button.text-primary.underline:hover { color: #c4b5fd !important; }
+
+.p-5.rounded-2xl.bg-primary\/5 {
+  background: rgba(124, 58, 237, 0.08) !important;
+  border: 1px solid rgba(124, 58, 237, 0.2) !important;
+  border-radius: 1rem !important;
+}
+.p-5.rounded-2xl.bg-primary\/5 p {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 0.875rem !important;
+}
+
+/* ─── Quiz/Flashcard Footer ─────────────────────────────────── */
+footer.p-10.border-t {
+  background: rgba(255, 255, 255, 0.025) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Prev/Next navigation buttons */
+footer button {
+  border-radius: 1rem !important;
+  font-weight: 700 !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  height: 3rem !important;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  letter-spacing: -0.01em;
+}
+footer button[variant="outline"],
+footer button.rounded-2xl.border-2 {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+footer button:hover:not(:disabled) {
+  transform: translateY(-2px) !important;
+}
+footer button:hover:not(:disabled):not(:last-child) {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Primary footer button (Next/Finish) */
+footer button:last-child:not(:disabled) {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%) !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+}
+footer button:last-child:hover:not(:disabled) {
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.55) !important;
+}
+footer button:disabled {
+  opacity: 0.28 !important;
+  cursor: not-allowed !important;
+}
+
+/* ─── Flashcard Page ────────────────────────────────────────── */
+/* Tab dots (card navigator) */
+div.flex.gap-2.bg-muted\/50.p-1\.5.rounded-2xl {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 1rem !important;
+  gap: 4px !important;
+  padding: 4px !important;
+}
+div.flex.gap-2.bg-muted\/50 button {
+  border-radius: 0.65rem !important;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  transition: all 0.22s ease !important;
+}
+div.flex.gap-2.bg-muted\/50 button[class*="bg-background"] {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
+  color: white !important;
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.4);
+}
+div.flex.gap-2.bg-muted\/50 button:not([class*="bg-background"]):hover {
+  background: rgba(124, 58, 237, 0.12) !important;
+  color: #a78bfa !important;
+}
+
+/* Decorative side cards */
+.hidden.lg\:block.w-64.aspect-\[3\/4\].rounded-3xl.border-2.opacity-20 {
+  border-color: rgba(124, 58, 237, 0.35) !important;
+  background: rgba(124, 58, 237, 0.04) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Current card counter */
+p.text-sm.font-bold.text-muted-foreground {
+  color: rgba(255, 255, 255, 0.38) !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.1em;
+}
+
+/* ─── Flashcard Component ───────────────────────────────────── */
+.perspective-1000 {
+  filter: drop-shadow(0 20px 60px rgba(0,0,0,0.5));
+}
+
+/* Flashcard front */
+.perspective-1000 .backface-hidden:first-child {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 12px 50px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 0 1px rgba(124,58,237,0.08);
+  transition: box-shadow 0.3s ease !important;
+}
+.perspective-1000:hover .backface-hidden:first-child {
+  box-shadow:
+    0 20px 70px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    0 0 0 1px rgba(124,58,237,0.2),
+    0 0 40px rgba(124,58,237,0.1);
+}
+.perspective-1000 .backface-hidden:first-child h3 {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 3vw, 1.5rem) !important;
+}
+.perspective-1000 .backface-hidden:first-child p {
+  color: rgba(255, 255, 255, 0.3) !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em;
+}
+
+/* Flashcard back */
+.perspective-1000 .backface-hidden.rotate-y-180 {
+  background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(79,70,229,0.08)) !important;
+  border: 1px solid rgba(124, 58, 237, 0.25) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 12px 50px rgba(0,0,0,0.4),
+    0 0 40px rgba(124,58,237,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.perspective-1000 .backface-hidden.rotate-y-180 p:first-child {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: clamp(1rem, 2.5vw, 1.3rem) !important;
+  line-height: 1.6;
+}
+
+/* ─── Results Page ──────────────────────────────────────────── */
+.min-h-screen.bg-background.p-6 {
+  background: transparent !important;
+  animation: fade-in 0.4s ease;
+}
+
+header.max-w-4xl {
+  animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Home button on results */
+header.max-w-4xl a button,
+.max-w-4xl a > button {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.875rem !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight: 700;
+  transition: all 0.25s ease !important;
+}
+header.max-w-4xl a button:hover { 
+  background: rgba(124, 58, 237, 0.1) !important;
+  border-color: rgba(124, 58, 237, 0.3) !important;
+  color: #a78bfa !important;
+  transform: translateY(-1px);
+}
+
+/* Score circle */
+.relative.w-48.h-48 {
+  animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+.relative.w-48.h-48 svg circle:first-child {
+  stroke: rgba(255, 255, 255, 0.07) !important;
+}
+.relative.w-48.h-48 svg circle:last-child {
+  stroke: url(#scoreGradient) !important;
+  filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.5));
+  animation: score-draw 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+.relative.w-48.h-48 .text-sm.text-muted-foreground {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 0.65rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.relative.w-48.h-48 .text-5xl.font-bold {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-family: "Space Grotesk", sans-serif;
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Review items */
+.w-full.space-y-6 > div {
+  animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+}
+.w-full.space-y-6 > div:nth-child(1) { animation-delay: 0.2s; }
+.w-full.space-y-6 > div:nth-child(2) { animation-delay: 0.28s; }
+.w-full.space-y-6 > div:nth-child(3) { animation-delay: 0.36s; }
+.w-full.space-y-6 > div:nth-child(4) { animation-delay: 0.44s; }
+.w-full.space-y-6 > div:nth-child(5) { animation-delay: 0.52s; }
+
+/* Review question text */
+.space-y-6 p.text-xl.font-semibold {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-weight: 600 !important;
+}
+
+/* Answer card */
+.p-4.bg-primary\/5.border-none.rounded-2xl {
+  background: rgba(124, 58, 237, 0.08) !important;
+  border: 1px solid rgba(124, 58, 237, 0.18) !important;
+  border-radius: 1rem !important;
+}
+.p-4.bg-primary\/5 p {
+  color: rgba(255, 255, 255, 0.55) !important;
+  font-style: normal !important;
+  font-size: 0.84rem !important;
+}
+
+/* Check / X icons */
+.w-8.h-8.text-green-500 { filter: drop-shadow(0 0 8px rgba(16,185,129,0.4)); }
+.w-8.h-8.text-red-500   { filter: drop-shadow(0 0 8px rgba(239,68,68,0.35)); }
+
+/* Try Again button */
+main > a > button {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%) !important;
+  border: none !important;
+  border-radius: 1.25rem !important;
+  color: white !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+  height: 3.75rem !important;
+  padding: 0 3rem !important;
+  box-shadow: 0 6px 30px rgba(124, 58, 237, 0.5);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+main > a > button:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 12px 45px rgba(124, 58, 237, 0.6) !important;
+}
+
+/* ─── Loading Page ──────────────────────────────────────────── */
+.fixed.inset-0.bg-background\/80 {
+  background: rgba(10, 10, 20, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  animation: fade-in 0.3s ease;
+}
+
+/* Spinner */
+.fixed.inset-0 .w-16.h-16.text-primary {
+  color: #7c3aed !important;
+  filter: drop-shadow(0 0 20px rgba(124,58,237,0.7));
+}
+
+/* Loading title */
+.fixed.inset-0 h2 {
+  background: linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem !important;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Dancing dots */
+.w-3.h-3.rounded-full {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4) !important;
+  animation: bounce-dots 1.4s ease-in-out infinite !important;
+}
+.w-3.h-3.rounded-full.\[animation-delay\:0\.2s\] { animation-delay: 0.2s !important; }
+.w-3.h-3.rounded-full.\[animation-delay\:0\.4s\] { animation-delay: 0.4s !important; }
+
+/* ─── Shadcn Button base overrides ─────────────────────────── */
+button {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  main > div.text-center h1 { font-size: 2.8rem !important; }
+  .rounded-\[40px\] { border-radius: 1.5rem !important; }
+  footer.p-10 { padding: 1.5rem !important; }
+  header.p-6 { padding: 1rem 1.25rem !important; }
+  .perspective-1000 { filter: none; }
+  .relative.w-48.h-48 { width: 10rem; height: 10rem; }
+}
+
+@media (max-width: 480px) {
+  main > div.text-center h1 { font-size: 2.2rem !important; }
+  .grid.grid-cols-2.gap-3 > button { font-size: 0.875rem !important; }
+  button[type="submit"] { font-size: 0.95rem !important; height: 3.25rem !important; }
 }
